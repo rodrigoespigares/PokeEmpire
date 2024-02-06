@@ -1,0 +1,8 @@
+:root{
+  font-size: 62.5%;
+}
+#root{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 10vh, 4fr, minmax(min-content, 1fr);
+}
