@@ -7,11 +7,11 @@ export default function Static() {
   return (
     <>
       <header id='header'>
-        <a>
+        <div className='content'>
             <img src={logo} alt="" />
-        </a>
+        </div>
         <div className='menu'>
-            <button>Home</button>
+            <button className='btn'>Home</button>
             <button>Best pokemon</button>
         </div>
         <button className='icon'><Icon icon="ph:user-duotone" /></button>
@@ -48,16 +48,16 @@ export default function Static() {
             <div className="metodos">
                 <h3>Métodos de pago</h3>
                 <div className="metodos__icon">
-                  <Icon icon="mingcute:visa-line" />
-                  <Icon icon="mdi:paypal" />
-                  <Icon icon="brandico:mastercard" />
+                  <Icon className='icon' icon="mingcute:visa-line" />
+                  <Icon className='icon' icon="mdi:paypal" />
+                  <Icon className='icon' icon="brandico:mastercard" />
                 </div>
             </div>
             <div className="rrss__content__social">
-                <a href="facebook.com"><Icon icon="mdi:facebook" /></a>
-                <a href="instragram.es"><Icon icon="mdi:instagram" /></a>
-                <a href="twitter.es"><Icon icon="mdi:twitter" /></a>
-                <a href="youtube.com"><Icon icon="mdi:youtube" /></a>
+                <a href="facebook.com"><Icon className='icon' icon="mdi:facebook" /></a>
+                <a href="instragram.es"><Icon className='icon' icon="mdi:instagram" /></a>
+                <a href="twitter.es"><Icon className='icon' icon="mdi:twitter" /></a>
+                <a href="youtube.com"><Icon className='icon' icon="mdi:youtube" /></a>
             </div>
         </section>
     </footer>

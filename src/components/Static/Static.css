@@ -1,15 +1,22 @@
 #header{
-    grid-row: 1/2;
-    grid-column: 2/-2;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
-#header a img{
-    width: 30%;
+#header .content{
+    display: flex;
+    align-items: center;
+    width: 10%;
+}
+#header .content img{
+    width: 100%;
+}
+#header .menu{
+    display: flex;
+    align-items: center;
 }
 #header .menu button{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 #header .icon{
     font-size: 3rem;
@@ -24,9 +31,24 @@
     align-items: center;
     justify-items: center;
     padding: 3rem 0;
+    color: white;
+}
+#footer a{
+    text-decoration: none;
+    color: white;
+}
+#footer a:hover, #footer a:active{
+    
+    text-decoration: underline;
+}
+#footer .icon{
+    font-size: 5rem;
 }
 #footer h3{
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
+}
+#footer ul{
+    list-style: none;
 }
 #footer section{
     text-align: center;

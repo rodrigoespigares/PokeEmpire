@@ -9,7 +9,9 @@ function App() {
   return (
     <>
       <Static></Static>
-      <Landing></Landing>
+      <main id="main">
+        <Landing></Landing>
+      </main>
     </>
   )
 }
