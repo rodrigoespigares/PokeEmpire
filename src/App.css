@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 *{
   padding: 0;
   margin: 0;
@@ -8,12 +9,16 @@
   font-size: 62.5%;
   font-family: 'Roboto', sans-serif;
 }
+body{
+  background: rgb(244,24,24);
+  background: linear-gradient(145deg, rgba(244,24,24,1) 0%, rgba(143,12,154,1) 35%, rgba(67,0,82,1) 100%);
+  object-fit: cover;
+}
 #root{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 10vh minmax(min-content, 1fr) 20vh;
-  background: rgb(244,24,24);
-  background: linear-gradient(145deg, rgba(244,24,24,1) 0%, rgba(143,12,154,1) 35%, rgba(67,0,82,1) 100%);
+  
 }
 #header{
   grid-row: 1/2;
@@ -22,6 +27,7 @@
 #main{
   grid-row: 2/3;
   grid-column: 1/-1;
+  min-height: 63vh;
 }
 #footer{
   grid-row: 3/4;
@@ -29,4 +35,7 @@
 }
 button{
   cursor: pointer;
+}
+.link{
+  text-decoration: none;
 }
