@@ -4,6 +4,7 @@ import Static from './components/Static/Static'
 import Landing from './components/Landing/Landing'
 import Pokedex from './components/Pokedex/Pokedex'
 import Midware from './utils/Midware';
+import Detalle from './components/Detalle/Detalle'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -29,6 +30,15 @@ function App() {
       <Static></Static>
       <main id="main">
         <Pokedex/>
+      </main>
+    </>,
+    },
+    {
+      path: "/pokedetalle/:id",
+      element: <>
+      <Static></Static>
+      <main id="main">
+        <Detalle/>
       </main>
     </>,
     },
