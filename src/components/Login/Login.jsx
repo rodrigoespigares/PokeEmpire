@@ -132,7 +132,6 @@ let passRegistro = "";
 
     
     function cambioClase(e) {
-        console.log(e.target.id)
         if(e.target.id == 'signUp'){
             e.target.parentElement.parentElement.parentElement.parentElement.classList.add('right-panel-active')
         }else if(e.target.id == 'signIn'){

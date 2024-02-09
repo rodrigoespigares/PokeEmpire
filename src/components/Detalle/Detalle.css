@@ -1,0 +1,34 @@
+#detalle{
+    display: flex;
+    justify-content: space-evenly;
+}
+.detalle__principal{
+    width: 50rem;
+    height: 40rem;
+    display: flex;
+}
+.detalle__principal img{
+    width: 100%;
+    height: 100%;
+}
+.detalle__conjunto{
+    cursor: pointer;
+    width: 50rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.detalle__conjunto > div{
+    width: 10rem;
+    border: 1px solid #eee;
+    background-color: rebeccapurple;
+}
+.detalle__conjunto img{
+    width: 100%;
+}
+
+.habilidades article{
+    border: 1px solid #eee;
+    font-size: 2rem;
+    margin: 2rem;
+}
