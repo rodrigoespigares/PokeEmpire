@@ -3,7 +3,6 @@ import { Icon } from '@iconify/react';
 import logo from '../../assets/logo.png';
 import './Static.css'
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 
 export default function Static() {
     return (
@@ -16,7 +15,7 @@ export default function Static() {
                     <Link className='menu__link' to="/">Home</Link>
                     <Link className='menu__link' to="/pokedex">Pokedex</Link>
                 </div>
-                <Link to='/login'><button className='icon'><Icon icon="ph:user-duotone" /></button></Link>
+                <Link to='/login'><button className='icon btn'><Icon icon="ph:user-duotone" /></button></Link>
             </header>
             <footer id='footer'>
                 <section id="footer__help">

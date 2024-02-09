@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Icon } from '@iconify/react'
 import hero from '../../assets/hero.png'
 import './Landing.css';
 import {Link} from 'react-router-dom';
+import { collection, getDocs } from "firebase/firestore"; 
+import {db} from '../../config';
+import { useState } from 'react';
+
+
+
 
 export default function Landing() {
+
+    let [player, setPlayer] = useState ([]);
+    useEffect(() => {
+        getDocs(collection(db, "points")).then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                setPlayer([...player,doc.data()]);
+            })
+        })
+    },[]);
+    
+    console.log(player)
   return (
     <>
         <section id="hero">
@@ -17,8 +34,8 @@ export default function Landing() {
                 <img src={hero} alt="Pikachu" />
             </div>
         </section>
-        <section id='ranking'>
-            <h2>Most Popular Players</h2>
+        <section id='ranking' className='d-flex flex-column align-items-center'>
+            <h2 className='display-2'>Most Popular Players</h2>
             
         </section>
     </>

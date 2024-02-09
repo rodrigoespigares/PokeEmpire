@@ -2,7 +2,7 @@ import './App.css'
 import './components/Static/Static'
 import {
   createBrowserRouter,
-  RouterProvider,
+  RouterProvider, Outlet
 } from "react-router-dom";
 
 
@@ -16,58 +16,46 @@ import Login from './components/Login/Login'
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
       element: (
         <>
           <Static></Static>
           <main id="main">
-            <Landing/>
+            <Outlet></Outlet>
           </main>
+          
         </>
           
       ),
-    },
-    {
-      path: "/pokedex",
-      element: <>
-      <Static></Static>
-      <main id="main">
-        <Pokedex/>
-      </main>
-    </>,
-    },
-    {
-      path: "/pokedetalle/:id",
-      element: <>
-      <Static></Static>
-      <main id="main">
-        <Detalle/>
-      </main>
-    </>,
-    },
-    {
-      path: "/play",
-      element: <>
-      <Static></Static>
-      <main id="main">
-          <Midware></Midware>
-      </main>
-    </>,
-    },
-    {
-      path: "/login",
-      element: <>
-      <Static></Static>
-      <main id="main">
-          <Login></Login>
-      </main>
-    </>,
+      children:[
+        {
+          path: "/",
+          element: <Landing></Landing>
+        },
+        {
+          path: "/pokedex",
+          element: <Pokedex></Pokedex>,
+        },
+        {
+          path: "/pokedetalle/:id",
+          element: <Detalle></Detalle>
+        },
+        {
+          path: "/play",
+          element: <Midware></Midware>
+        },
+        {
+          path: "/login",
+          element: <Login></Login>
+        }
+      ]
     },
   ]);
 
   return (
     <>
-      <RouterProvider router={router} />
+      
+        <RouterProvider router={router} /> 
+      
     </>
   )
 }
