@@ -10,13 +10,13 @@ export default function Static() {
         <>
             <header id='header'>
                 <div className='content'>
-                    <img src={logo} alt="" />
+                    <Link to="/"><img src={logo} alt="" /></Link>
                 </div>
                 <div className='menu'>
                     <Link className='menu__link' to="/">Home</Link>
                     <Link className='menu__link' to="/pokedex">Pokedex</Link>
                 </div>
-                <button className='icon'><Icon icon="ph:user-duotone" /></button>
+                <Link to='/login'><button className='icon'><Icon icon="ph:user-duotone" /></button></Link>
             </header>
             <footer id='footer'>
                 <section id="footer__help">

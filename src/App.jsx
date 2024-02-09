@@ -1,14 +1,17 @@
 import './App.css'
 import './components/Static/Static'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+
 import Static from './components/Static/Static'
 import Landing from './components/Landing/Landing'
 import Pokedex from './components/Pokedex/Pokedex'
 import Midware from './utils/Midware';
 import Detalle from './components/Detalle/Detalle'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import Login from './components/Login/Login'
 
 function App() {
   const router = createBrowserRouter([
@@ -48,6 +51,15 @@ function App() {
       <Static></Static>
       <main id="main">
           <Midware></Midware>
+      </main>
+    </>,
+    },
+    {
+      path: "/login",
+      element: <>
+      <Static></Static>
+      <main id="main">
+          <Login></Login>
       </main>
     </>,
     },

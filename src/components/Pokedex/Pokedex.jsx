@@ -4,9 +4,11 @@ import { Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Pokedex.css'
+import {useNavigate} from 'react-router-dom'
 
 let urlNext;
 export default function Pokedex() {
+  let navega = useNavigate();
   const [arrPokemon, setPokemon] = useState([]);
   const [pokemonFotos, setPokemonFotos] = useState([]);
   useEffect(() => {
@@ -49,7 +51,7 @@ export default function Pokedex() {
       return response.json();
     })
     .then((data) => {
-      console.log(data);
+      navega('/pokedetalle/'+data.id);
     })
     .catch((error) => {
         // GESTIONAR ERROR
