@@ -24,8 +24,11 @@ export default function Detalle() {
   let key= 0;
   let habilidades = [] 
   let tipo = []
+  let stats = [];
   if (pokemon != "") {
-    console.log(pokemon)
+    pokemon.stats.forEach(element =>{
+        stats.push(element.base_stat);
+    })
     pokemon.types.forEach(element => {
       tipo.push(<article key={element.type.name}>{element.type.name}</article>)
     })
@@ -35,7 +38,7 @@ export default function Detalle() {
     Object.keys(pokemon.sprites.other).map((element) =>
         Object.keys(pokemon.sprites.other[element]).map(into => {
           if (pokemon.sprites.other[element][into] != null) {
-            images.push(<div onClick={changeImg}><img key={pokemon.sprites.other[element][into]} id={key} src={pokemon.sprites.other[element][into]}></img></div>)
+            images.push(<div key={pokemon.sprites.other[element][into]} onClick={changeImg}><img key={pokemon.sprites.other[element][into]} id={key} src={pokemon.sprites.other[element][into]}></img></div>)
             key++;
           }
         }
@@ -64,6 +67,9 @@ export default function Detalle() {
         <section className='habilidades'>
           <h3>Abilities</h3>
           {habilidades}
+        </section>
+        <section>
+
         </section>
 
       </div>
