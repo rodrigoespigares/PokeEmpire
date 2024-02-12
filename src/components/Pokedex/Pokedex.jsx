@@ -6,11 +6,21 @@ import { Link } from 'react-router-dom'
 import './Pokedex.css'
 import {useNavigate} from 'react-router-dom'
 
+import Loading from '../Loading/Loading'
+
 let urlNext;
 export default function Pokedex() {
   let navega = useNavigate();
   const [arrPokemon, setPokemon] = useState([]);
   const [pokemonFotos, setPokemonFotos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  let cargaLoading;
+  if(loading){
+    cargaLoading = <Loading></Loading>
+  }else{
+    cargaLoading = null;
+  }
+
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?limit=9&offset=0')
       .then((response) => response.json())
@@ -21,6 +31,7 @@ export default function Pokedex() {
         pokemonData.results.forEach((pokemon) => {
           giveData(pokemon.url);
         });
+        setLoading(false);
       });
   }, []);
 
@@ -32,6 +43,7 @@ export default function Pokedex() {
       });
   }
   function giveMore(){
+    setLoading(true);
     fetch(urlNext)
       .then((response) => response.json())
       .then((pokemonData) => {
@@ -40,6 +52,7 @@ export default function Pokedex() {
         pokemonData.results.forEach((pokemon) => {
           giveData(pokemon.url);
         });
+        setLoading(false);
       });
   }
   function busqueda(string){
@@ -84,8 +97,8 @@ export default function Pokedex() {
       
       <div className='d-flex justify-content-center flex-wrap pokemon'>
         {lista}
-      
       </div>  
+      {cargaLoading}
       <Button variant='secondary' onClick={giveMore}>Ver más</Button>
     </section>
   )

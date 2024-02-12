@@ -11,7 +11,6 @@ import { useState } from 'react';
 
 
 export default function Landing() {
-
     let [player, setPlayer] = useState ([]);
     useEffect(() => {
         getDocs(collection(db, "points")).then((querySnapshot) => {
@@ -20,8 +19,6 @@ export default function Landing() {
             })
         })
     },[]);
-    
-    console.log(player)
   return (
     <>
         <section id="hero">

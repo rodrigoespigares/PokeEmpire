@@ -12,13 +12,14 @@ import {
 import { auth } from '../../config';
 import { Icon } from '@iconify/react';
 import './Login.css';
-
+import {useNavigate} from 'react-router-dom'
 
 export default function Login() {
 let emailRegistro = "";
 let emailInicio = "";
 let passInicio = "";
 let passRegistro = "";
+let navega = useNavigate();
     function iniciaSesionGoogle() {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
@@ -30,7 +31,7 @@ let passRegistro = "";
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
                 // ...
-                router.push(link);
+                navega('/');
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -98,7 +99,6 @@ let passRegistro = "";
         });
     }
     function iniciaSesionFacebook() {
-        const auth = getAuth();
         const provider = new FacebookAuthProvider();
         signInWithPopup(auth, provider)
         .then((result) => {
@@ -111,7 +111,7 @@ let passRegistro = "";
     
             // IdP data available using getAdditionalUserInfo(result)
             // ...
-            router.push(link);
+            navega('/');
         })
         .catch((error) => {
             // Handle Errors here.

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import './Detalle.css';
-import Loading from '../Loading/Loading';
+
 
 export default function Detalle() {
   let { id } = useParams();
@@ -28,7 +28,6 @@ export default function Detalle() {
   let stats = [];
   if (pokemon != "") {
     pokemon.stats.forEach(element =>{
-        console.log();
         stats.push( <p key={element.stat.name}>{element.stat.name}: {element.base_stat}</p>);
     })
     pokemon.types.forEach(element => {

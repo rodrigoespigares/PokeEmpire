@@ -12,6 +12,7 @@ import Pokedex from './components/Pokedex/Pokedex'
 import Midware from './utils/Midware';
 import Detalle from './components/Detalle/Detalle'
 import Login from './components/Login/Login'
+import Play from './components/Play/Play';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,7 +42,7 @@ function App() {
         },
         {
           path: "/play",
-          element: <Midware></Midware>
+          element: <Midware Component={Play}></Midware>
         },
         {
           path: "/login",

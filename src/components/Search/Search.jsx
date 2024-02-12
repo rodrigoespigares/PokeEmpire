@@ -9,7 +9,7 @@ export default function Search({busqueda}) {
     }
   return (
     <div className='d-flex'>
-        <input type="text" className='fs-1' onKeyUp={devuelveBuscar}/>
+        <input type="text" className='fs-1 text-black' onKeyUp={devuelveBuscar}/>
         <Button variant='secondary' className='fs-1 d-flex align-items-center'><Icon icon="gala:search" /></Button>
 
     </div>

@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Icon } from '@iconify/react';
 import logo from '../../assets/logo.png';
 import './Static.css'
 import { Link } from 'react-router-dom';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import {useNavigate} from 'react-router-dom';
 
 export default function Static() {
+    let navega = useNavigate()
+    let [usuario,setUsuario] = useState("");
+    useEffect(() => {
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        setUsuario(user)
+      })
+
+    },[]);
+    function cerrarSesion(){
+        const auth = getAuth();
+        signOut(auth)
+            .then(() => {
+                navega("/")
+            })
+            .catch((error) => {
+            // An error happened.
+            });
+    }
+    let login  ="";
+    let menu = null;
+    if(usuario){
+        login = <button onClick={cerrarSesion} className='icon btn'>Cerrar sesión</button>
+        menu = <Link className='menu__link' to="/play">Play</Link>
+    }else{
+        login = <Link to='/login'><button className='icon btn'><Icon icon="ph:user-duotone" /></button></Link>
+        menu = null
+    }
+
     return (
         <>
             <header id='header'>
@@ -14,8 +45,9 @@ export default function Static() {
                 <div className='menu'>
                     <Link className='menu__link' to="/">Home</Link>
                     <Link className='menu__link' to="/pokedex">Pokedex</Link>
+                    {menu}
                 </div>
-                <Link to='/login'><button className='icon btn'><Icon icon="ph:user-duotone" /></button></Link>
+                {login}
             </header>
             <footer id='footer'>
                 <section id="footer__help">
