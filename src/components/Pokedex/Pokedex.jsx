@@ -78,7 +78,7 @@ export default function Pokedex() {
       <div className="flip-card">
         <div className="flip-card-inner">
           <div className="flip-card-front">
-            <img src={pokemon.sprites.other['official-artwork'].front_default} alt="Card Front Image"/>
+            <img src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name}/>
           </div>
           <div className="flip-card-back">
             <div className="card-content">
