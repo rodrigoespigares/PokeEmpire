@@ -1,3 +1,6 @@
 .imagen__juego{
     filter:brightness(0%)
 }
+.jugar:hover{
+    color: yellow !important;
+}
