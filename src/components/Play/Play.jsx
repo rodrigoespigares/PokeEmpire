@@ -50,7 +50,7 @@ export default function Play() {
 
     return (
         <div className='d-flex justify-content-center align-items-center h-100 flex-column'>
-            <h2 className='display-1'>How its that Pokemon</h2>
+            <h2 className='display-1'>How its that Pokemon?</h2>
             {img}
             <div className='d-flex flex-column'>
                 {options.map((option, index) => (
