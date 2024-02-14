@@ -51,13 +51,15 @@ export default function Play() {
     return (
         <div className='d-flex justify-content-center align-items-center h-100 flex-column'>
             <h2 className='display-1'>How its that Pokemon?</h2>
-            {img}
-            <div className='d-flex flex-column'>
-                {options.map((option, index) => (
-                    <button key={index} onClick={opciones} className='text-white nombres fs-1 jugar'>{option}</button>
-                ))}
+            <div className='d-flex align-items-center'>
+                {img}
+                <div className='d-flex flex-column justify-content-evenly h-100'>
+                    {options.map((option, index) => (
+                        <button key={index} onClick={opciones} className='text-white nombres fs-1 jugar btn btn-outline-primary'>{option}</button>
+                    ))}
+                </div>
             </div>
-            <button className='text-white nombres fs-1 jugar' id='jugar' onClick={iniciarJuego}>PLAY</button>
+            <button className='text-white nombres fs-1 jugar btn btn-outline-primary' id='jugar' onClick={iniciarJuego}>PLAY</button>
         </div>
     );
 }
