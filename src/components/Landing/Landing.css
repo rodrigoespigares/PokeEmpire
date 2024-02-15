@@ -12,7 +12,7 @@
 }
 #hero  .content h1{
     font-weight: 300;
-    font-size: 6rem;
+    font-size: 3rem;
     color:white;
 }
 #hero  .content h2{
@@ -40,4 +40,12 @@
 
 #hero .picture img{
     width: 100%;
+}
+th, td{
+    background-color: transparent !important;
+    color: white !important;
+    cursor: pointer;
+}
+tr:hover td{
+    color: yellow !important;
 }

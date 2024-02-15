@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import './Play.css';
 import './styles/css-pokemon-gameboy.css'
+import { collection, addDoc,} from "firebase/firestore"; 
+import {db} from '../../config';
+
 
 let puntos = 0;
 
@@ -12,6 +15,7 @@ export default function Play() {
     let [usuario,setUsuario] = useState("");
     let [vidas, setVidas] = useState(3);
     let nombreUsuario = "";
+    
 
     useEffect(() => {
         const auth = getAuth();
@@ -27,17 +31,23 @@ export default function Play() {
     }
 
     function volverJugar(e){
+        
+        let userName = nombreUsuario==""?usuario.email.split('@')[0]:nombreUsuario;
+
+        const docData = {
+            points: puntos
+        };
+        addDoc(collection(db, "points"), {
+            user_id: usuario.uid,
+            user_name: userName,
+            points: puntos 
+          });
+        
+
         puntos = 0;
         setVidas(3);
         setEnd("");
-       
-        console.log(usuario.email);
-        console.log(nombreUsuario)
-        
 
-
-
-        
         iniciarJuego(e);
     }
 

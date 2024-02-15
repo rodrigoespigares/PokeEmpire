@@ -11,14 +11,22 @@ import { useState } from 'react';
 
 
 export default function Landing() {
-    let [player, setPlayer] = useState ([]);
+    const [players, setPlayers] = useState([]);
+
     useEffect(() => {
-        getDocs(collection(db, "points")).then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                setPlayer([...player,doc.data()]);
+        getDocs(collection(db, "points"))
+            .then((querySnapshot) => {
+                let playerData = [];
+
+                querySnapshot.forEach((doc) => {
+                    let data = doc.data();
+                    playerData.push(data);
+                });
+                playerData.sort((a, b) => b.points - a.points);
+                
+                setPlayers(playerData);
             })
-        })
-    },[]);
+    }, []);
   return (
     <>
         <section id="hero">
@@ -32,8 +40,23 @@ export default function Landing() {
             </div>
         </section>
         <section id='ranking' className='d-flex flex-column align-items-center'>
-            <h2 className='display-2'>Most Popular Players</h2>
-            
+            <h2 className='display-2 my-5'>Most Popular Players</h2>
+            <table className='table w-50 fs-1 text-center'>
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {players.map((player, index) => (
+                            <tr key={index}>
+                                <td>{player.user_name}</td>
+                                <td>{player.points}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
         </section>
     </>
   )
