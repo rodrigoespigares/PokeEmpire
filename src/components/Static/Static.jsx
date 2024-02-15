@@ -29,8 +29,8 @@ export default function Static() {
     let login  ="";
     let menu = null;
     if(usuario){
-        login = <button onClick={cerrarSesion} className='icon btn'>Cerrar sesión</button>
-        menu = <Link className='menu__link' to="/play">Play</Link>
+        login = <button onClick={cerrarSesion} className='btn fs-1'>Cerrar sesión</button>
+        menu = <Link className='menu__link fs-1' to="/play">Play</Link>
     }else{
         login = <Link to='/login'><button className='icon btn'><Icon icon="ph:user-duotone" /></button></Link>
         menu = null
@@ -43,8 +43,8 @@ export default function Static() {
                     <Link to="/"><img src={logo} alt="" /></Link>
                 </div>
                 <div className='menu'>
-                    <Link className='menu__link' to="/">Home</Link>
-                    <Link className='menu__link' to="/pokedex">Pokedex</Link>
+                    <Link className='menu__link fs-1' to="/">Home</Link>
+                    <Link className='menu__link fs-1' to="/pokedex">Pokedex</Link>
                     {menu}
                 </div>
                 {login}

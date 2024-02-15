@@ -1,6 +1,9 @@
 .imagen__juego{
     filter:brightness(0%);
 }
+.ver{
+    filter:brightness(100%) !important;
+}
 .jugar:hover{
     color: black !important;
 }
@@ -20,3 +23,23 @@
     --bs-btn-disabled-border-color: yellow;
     --bs-gradient: none;
   }
+  #volver {
+    z-index: 2; /* Cambiado a 2 */
+}
+#volver button, #volver input{
+    z-index: 400;
+}
+
+#volver::before {
+    content: "";
+    height: 50vh;
+    width: 50vw;
+    position: absolute;
+    z-index: 1; /* Cambiado a 1 */
+}
+.progress-bar-container{
+    width: 40%;
+}
+.progress-bar-container #progressBarR{
+    height: 20px !important;
+}
