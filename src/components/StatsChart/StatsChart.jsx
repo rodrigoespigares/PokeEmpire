@@ -40,7 +40,10 @@ const StatsChart = ({ stats }) => {
                 color: 'rgba(255,255,255,0.6)', 
               },
               ticks: {
-                display: false, 
+                display: false,
+              },
+              pointLabels: {
+                color: 'rgba(255, 255, 255, 1)',
               },
               suggestedMin: 0,
               suggestedMax: 100,
