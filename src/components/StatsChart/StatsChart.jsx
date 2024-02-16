@@ -39,11 +39,6 @@ const StatsChart = ({ stats }) => {
                 display: true,
                 color: 'rgba(255,255,255,0.6)', 
               },
-              pointLabels: {
-                font: {
-                  color: 'rgba(0,0,0,1)', 
-                },
-              },
               ticks: {
                 display: false, 
               },
