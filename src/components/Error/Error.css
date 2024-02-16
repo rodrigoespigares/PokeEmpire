@@ -1,0 +1,26 @@
+#error{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+}
+#error .error{
+    font-size: 20rem;
+    color: yellow;
+}
+#error p:nth-child(2){
+    font-size: 2rem;
+}
+#error p:nth-child(2) span{
+    color: yellow
+}
+#error .link{
+    padding: 2rem;
+    border-radius: 2rem;
+    font-weight:600;
+    color: white;
+}
+#error .link:hover,#error .link:active{
+    color:yellow;
+}

@@ -13,6 +13,7 @@ import Midware from './utils/Midware';
 import Detalle from './components/Detalle/Detalle'
 import Login from './components/Login/Login'
 import Play from './components/Play/Play';
+import Error from './components/Error/Error';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,9 +24,7 @@ function App() {
           <main id="main">
             <Outlet></Outlet>
           </main>
-          
         </>
-          
       ),
       children:[
         {
@@ -47,6 +46,11 @@ function App() {
         {
           path: "/login",
           element: <Login></Login>
+        },
+        {
+          path: "*",
+          element:
+            <Error></Error>
         }
       ]
     },
