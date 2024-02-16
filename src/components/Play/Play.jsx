@@ -14,6 +14,7 @@ export default function Play() {
     const [options, setOptions] = useState([]);
     const [correctPokemon, setCorrectPokemon] = useState("");
     let [end,setEnd] = useState("");
+    let [winner,setWinner] =useState("");
     let [usuario,setUsuario] = useState("");
     let [vidas, setVidas] = useState(3);
     let [loading, setLoading] = useState(false);
@@ -33,6 +34,7 @@ export default function Play() {
     }, [setUsuario]);
     function iniciarJuego(e) {
         setLoading(true)
+        setWinner("");
         e.target.id=="jugar"?e.target.hidden=true:"";
         document.getElementById("infoVidas").hidden=false;
         const aleatorio = Math.floor(Math.random() * 1000);
@@ -101,20 +103,18 @@ export default function Play() {
     }
 
     function opciones(e) {
-        console.log(e.target.innerText)
         const selectedPokemon = e.target.innerText;
         const isCorrect = selectedPokemon.toLowerCase() === correctPokemon;
-        console.log(isCorrect ? "¡Correcto!" : "Incorrecto");
         if(isCorrect){
             puntos++;
             document.getElementsByClassName("imagen__juego")[0].classList.add("ver");
+            win();
             setTimeout(() => {
                 iniciarJuego(e);
             }, 1000);
             
         }else{
             setVidas(vidas-1);
-            console.log(vidas);
             if(vidas == 0)
             endgame()
         }
@@ -136,7 +136,14 @@ export default function Play() {
         );
 
     }
-
+    function win(){
+        setWinner(
+            <div id='volver' className='text-black position-absolute d-flex flex-column align-items-center justify-content-center alert alert-success' role='alert'>
+                <h1>CORRECT</h1>
+                <p className='text-black'>POINTS: {puntos}</p>
+            </div>
+        );
+    }
     return (
         <div id="juego" className='d-flex justify-content-center align-items-center h-100 flex-column'>
             <h2 className='display-1'>How it's that Pokemon?</h2>
@@ -150,6 +157,7 @@ export default function Play() {
             </div>
             {cargaLoading}
             {end}
+            {winner}
             <div hidden id='infoVidas' className="progress-bar-container">
                 <progress id="progressBarR" className="p20" value={Math.ceil(vidas==0?1.5:vidas*33.33)} max="100"></progress>
             </div>
