@@ -1,4 +1,4 @@
-![imagen](https://github.com/rodrigoespigares/PokeEmpire/assets/94736646/bb1ebfd5-938b-44ef-aac9-fdc8c6817269)![imagen](https://github.com/rodrigoespigares/PokeEmpire/assets/94736646/ec475d44-eae1-4a74-9c88-c7707ec51d5c)# PokeEmpire
+# PokeEmpire
 
 Development of a website to search for all the necessary information about your pokemons. Will you be able to be in the top 3 players?
 
