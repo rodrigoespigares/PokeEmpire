@@ -99,7 +99,7 @@ export default function Pokedex() {
         {lista}
       </div>  
       {cargaLoading}
-      <Button variant='secondary' onClick={giveMore}>Ver más</Button>
+      <Button variant='secondary' onClick={giveMore}>More...</Button>
     </section>
   )
 }

@@ -146,7 +146,7 @@ let navega = useNavigate();
         <div className="container" id="container">
             <div className="form-container sign-up-container">
                 <div className="form">
-                    <h1>Crear una cuenta</h1>
+                    <h1>Create a count</h1>
                     <div className="social-container">
                         <button onClick={iniciaSesionGoogle} type="button" className="social">
                             <Icon icon="mingcute:google-fill" />
@@ -158,16 +158,16 @@ let navega = useNavigate();
                             <Icon icon="fluent-mdl2:git-hub-logo" />
                         </button>
                     </div>
-                    <span>o usa un email para registrarte</span>
+                    <span>or use an email to register</span>
                     <input type="text" placeholder="Name" />
                     <input type="email" placeholder="Email" v-model="emailRegistro"/>
                     <input type="password" placeholder="Password" v-model="passRegistro"/>
-                    <button onClick={registroCorreo()} className="buttons">Registro</button>
+                    <button onClick={registroCorreo()} className="buttons">Sign up</button>
                 </div>
             </div>
             <div className="form-container sign-in-container">
                 <div className="form">
-                    <h1>Inicio de sesión</h1>
+                    <h1>Log in</h1>
                     <div className="social-container">
                         <button onClick={iniciaSesionGoogle} type="button" className="social">
                             <Icon icon="mingcute:google-fill" />
@@ -179,25 +179,25 @@ let navega = useNavigate();
                             <Icon icon="fluent-mdl2:git-hub-logo" />
                         </button>
                     </div>
-                    <span>o usa tu cuenta</span>
+                    <span>or use your account</span>
                     <input type="email" placeholder="Email" v-model="emailInicio"/>
                     <input type="password" placeholder="Password" v-model="passInicio"/>
-                    <button onClick={inicioCorreo()} className="buttons">Inicio sesión</button>
+                    <button onClick={inicioCorreo()} className="buttons">Log in</button>
                 </div>
             </div>
             <div className="overlay-container">
                 <div className="overlay">
                     <div className="overlay-panel overlay-left">
-                        <h1>Bienvendio</h1>
+                    <h1>Welcome</h1>
                         <p>
-                            Inicia sesión con tu información personal
+                            Sign in with your personal information
                         </p>
-                        <button onClick={cambioClase} className="buttons ghost" id="signIn">Inicio sesión</button>
+                        <button onClick={cambioClase} className="buttons ghost" id="signIn">Sign in</button>
                     </div>
                     <div className="overlay-panel overlay-right">
-                        <h1>Hola, bienvenido</h1>
-                    <p>Coloca tus datos para registrarte haciendo click</p>
-                    <button onClick={cambioClase} className="buttons ghost" id="signUp">Registrate</button>
+                    <h1>Hello, welcome</h1>
+                    <p>Enter your information to register by clicking</p>
+                    <button onClick={cambioClase} className="buttons ghost" id="signUp">Sign up</button>
                 </div>
             </div>
         </div>

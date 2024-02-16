@@ -52,20 +52,25 @@ export default function Detalle() {
         <div className='detalle__principal'>{images[click]}</div>
         <div className='detalle__conjunto'>{images}</div>
       </div>
-      <div>
+      <div className='detalle__especifico'>
         <h2 className='display-1 text-uppercase'>{pokemon.name}</h2>
         <section className='id'>
           <h3>Number pokedex: {pokemon.id}</h3>
         </section>
-        <section>
+        <section className='tipos'>
           <h3>Types:</h3>
+          <div className='d-flex w-100 justify-content-evenly'>
           {tipo}
+          </div>
         </section>
         <section className='habilidades'>
           <h3>Abilities</h3>
+          <div className='d-flex w-100 justify-content-evenly'>
           {habilidades}
+          </div>
+          
         </section>
-        <section>
+        <section className='estadisticas'>
           <h3>Stats</h3>
           <StatsChart stats={pokemon.stats} />
         </section>

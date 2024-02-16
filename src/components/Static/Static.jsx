@@ -29,8 +29,8 @@ export default function Static() {
     let login  ="";
     let menu = null;
     if(usuario){
-        login = <button onClick={cerrarSesion} className='btn fs-1'>Cerrar sesión</button>
-        menu = <Link className='menu__link fs-1' to="/play">Play</Link>
+        login = <button onClick={cerrarSesion} className='btn fs-1'>Log out</button>
+        menu = <Link className='menu__link fs-1 text-uppercase' to="/play">Play</Link>
     }else{
         login = <Link to='/login'><button className='icon btn'><Icon icon="ph:user-duotone" /></button></Link>
         menu = null
@@ -42,44 +42,44 @@ export default function Static() {
                 <div className='content'>
                     <Link to="/"><img src={logo} alt="" /></Link>
                 </div>
-                <div className='menu'>
-                    <Link className='menu__link fs-1' to="/">Home</Link>
-                    <Link className='menu__link fs-1' to="/pokedex">Pokedex</Link>
+                <div className='menu w-50'>
+                    <Link className='menu__link fs-1 text-uppercase' to="/">Home</Link>
+                    <Link className='menu__link fs-1 text-uppercase' to="/pokedex">Pokedex</Link>
                     {menu}
                 </div>
                 {login}
             </header>
             <footer id='footer'>
                 <section id="footer__help">
-                    <h3>Ayuda</h3>
+                    <h3>Help</h3>
                     <ul>
-                        <li><a href="#">Uso del producto</a></li>
-                        <li><a href="#">Preguntas frecuentes</a></li>
-                        <li><a href="#">Cuestiones</a></li>
-                        <li><a href="#">Foro</a></li>
+                        <li><a href="#">Use of the product</a></li>
+                        <li><a href="#">Frequently asked questions</a></li>
+                        <li><a href="#">Questions</a></li>
+                        <li><a href="#">Forum</a></li>
                     </ul>
                 </section>
                 <section id="footer__us">
-                    <h3>Nosotros</h3>
+                    <h3>About Us</h3>
                     <ul>
                         <li><a href="#">Jobs</a></li>
-                        <li><a href="#">Sobre nosotros</a></li>
-                        <li><a href="#">Uso de nuestra marca</a></li>
-                        <li><a href="#">Conctacto</a></li>
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Use of our trademark</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </section>
                 <section id="footer__legal">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="#">Contacto legal</a></li>
-                        <li><a href="#">Marca registrada</a></li>
-                        <li><a href="#">Privacidad</a></li>
-                        <li><a href="#">Seguridad y cookies</a></li>
+                        <li><a href="#">Legal contact</a></li>
+                        <li><a href="#">Registered trademark</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Security and cookies</a></li>
                     </ul>
                 </section>
                 <section id="footer__info">
                     <div className="metodos">
-                        <h3>Métodos de pago</h3>
+                        <h3>Payment methods</h3>
                         <div className="metodos__icon">
                             <Icon className='icon' icon="mingcute:visa-line" />
                             <Icon className='icon' icon="mdi:paypal" />
