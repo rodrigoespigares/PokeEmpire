@@ -124,7 +124,7 @@ export default function Play() {
         setEnd(
             <div id='volver' className='text-black position-absolute d-flex flex-column align-items-center justify-content-center alert alert-light' role='alert'>
                 <h1>YOU HAVE ACHIEVED {puntos} POINTS</h1>
-                <label className='text-black' htmlFor="username">Nombre de usuario</label>
+                <label className='text-black' htmlFor="username">USER NAME</label>
                 <input
                     className='text-black'
                     type="text"
