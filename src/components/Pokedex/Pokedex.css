@@ -86,3 +86,6 @@
     width: 50%;
     gap: 15rem;
 }
+.err{
+    background-color: salmon;
+}

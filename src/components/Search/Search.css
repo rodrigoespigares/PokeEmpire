@@ -1,0 +1,13 @@
+input{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid white;
+    color: white;
+}
+.searching button{
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid white !important;
+    border-radius: 0 !important;
+}

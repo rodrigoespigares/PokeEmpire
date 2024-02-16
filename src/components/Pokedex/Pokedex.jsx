@@ -67,7 +67,7 @@ export default function Pokedex() {
       navega('/pokedetalle/'+data.id);
     })
     .catch((error) => {
-        // GESTIONAR ERROR
+        document.getElementById("search").classList.add("err");
     });
       
     
