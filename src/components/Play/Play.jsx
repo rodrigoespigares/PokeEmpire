@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import './Play.css';
 import './styles/css-pokemon-gameboy.css'
-import { collection, addDoc,} from "firebase/firestore"; 
+import { collection, addDoc, query, where, getDocs, updateDoc} from "firebase/firestore"; 
 import {db} from '../../config';
 
+import Loading from '../Loading/Loading';
 
 let puntos = 0;
 
@@ -12,10 +13,17 @@ export default function Play() {
     const [img, setImg] = useState("");
     const [options, setOptions] = useState([]);
     const [correctPokemon, setCorrectPokemon] = useState("");
+    let [end,setEnd] = useState("");
     let [usuario,setUsuario] = useState("");
     let [vidas, setVidas] = useState(3);
+    let [loading, setLoading] = useState(false);
     let nombreUsuario = "";
-    
+    let cargaLoading;
+    if(loading){
+      cargaLoading = (<div className='text-black position-absolute d-flex flex-column align-items-center justify-content-center'> <Loading></Loading> </div>)
+    }else{
+      cargaLoading = null;
+    }
 
     useEffect(() => {
         const auth = getAuth();
@@ -24,31 +32,42 @@ export default function Play() {
         });
     }, [setUsuario]);
     function iniciarJuego(e) {
+        setLoading(true)
         e.target.id=="jugar"?e.target.hidden=true:"";
         document.getElementById("infoVidas").hidden=false;
         const aleatorio = Math.floor(Math.random() * 1000);
         fetchPokemon(aleatorio + 1);
     }
 
-    function volverJugar(e){
-        
-        let userName = nombreUsuario==""?usuario.email.split('@')[0]:nombreUsuario;
-
-        const docData = {
-            points: puntos
-        };
-        addDoc(collection(db, "points"), {
-            user_id: usuario.uid,
-            user_name: userName,
-            points: puntos 
-          });
-        
-
-        puntos = 0;
-        setVidas(3);
-        setEnd("");
-
-        iniciarJuego(e);
+    function volverJugar(e) {
+        let userName = nombreUsuario === "" ? usuario.email.split('@')[0] : nombreUsuario;
+    
+        const pointsCollection = collection(db, "points");
+        const userQuery = query(pointsCollection, where("user_id", "==", usuario.uid));
+        getDocs(userQuery)
+            .then((querySnapshot) => {
+                if (querySnapshot.size > 0) {
+                    // Documento encontrado, actualiza la puntuación
+                    const userDoc = querySnapshot.docs[0].ref;
+                    const existingPoints = querySnapshot.docs[0].data().points;
+    
+                    if (puntos > existingPoints) {
+                        return updateDoc(userDoc, { user_name: userName, points: puntos });
+                    }
+                } else {
+                    return addDoc(pointsCollection, {
+                        user_id: usuario.uid,
+                        user_name: userName,
+                        points: puntos
+                    });
+                }
+            })
+            .then(() => {
+                puntos = 0;
+                setVidas(3);
+                setEnd("");
+                iniciarJuego(e);
+            })
     }
 
     function fetchPokemon(id) {
@@ -78,6 +97,7 @@ export default function Play() {
                     }
                 });
         }
+        setLoading(false)
     }
 
     function opciones(e) {
@@ -99,7 +119,7 @@ export default function Play() {
             endgame()
         }
     }
-    let [end,setEnd] = useState("");
+    
     function endgame(){
         setEnd(
             <div id='volver' className='text-black position-absolute d-flex flex-column align-items-center justify-content-center alert alert-light' role='alert'>
@@ -128,6 +148,7 @@ export default function Play() {
                     ))}
                 </div>
             </div>
+            {cargaLoading}
             {end}
             <div hidden id='infoVidas' className="progress-bar-container">
                 <progress id="progressBarR" className="p20" value={Math.ceil(vidas==0?1.5:vidas*33.33)} max="100"></progress>

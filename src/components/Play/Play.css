@@ -23,8 +23,8 @@
     --bs-btn-disabled-border-color: yellow;
     --bs-gradient: none;
   }
-  #volver {
-    z-index: 2; /* Cambiado a 2 */
+#volver {
+    z-index: 2;
 }
 #volver button, #volver input{
     z-index: 400;
@@ -35,7 +35,7 @@
     height: 50vh;
     width: 50vw;
     position: absolute;
-    z-index: 1; /* Cambiado a 1 */
+    z-index: 1;
 }
 .progress-bar-container{
     width: 40%;
