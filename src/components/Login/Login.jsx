@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
     GoogleAuthProvider,
@@ -19,8 +19,11 @@ let emailRegistro = "";
 let emailInicio = "";
 let passInicio = "";
 let passRegistro = "";
+let [errores, setErrores] = useState([]);
+
 let navega = useNavigate();
     function iniciaSesionGoogle() {
+        setErrores([])
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
@@ -42,39 +45,68 @@ let navega = useNavigate();
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
+
+                setErrores([...errores, errorMessage])
             });
     }
     function inicioCorreo() {
         
-        signInWithEmailAndPassword(auth, emailInicio.value, passInicio.value)
+        signInWithEmailAndPassword(auth, emailInicio, passInicio)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 // ...
-                router.push(link);
+                
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log(errorCode);
+                if(errorCode == "auth/missing-email"){
+                    document.getElementById("inicioMail").classList.add("err");
+                    setErrores([...errores, "Invalid email"])
+                }
+                if(errorCode == "auth/invalid-email"){
+                    document.getElementById("inicioMail").classList.add("err");
+                    setErrores([...errores, "Invalid email"])
+                }
+                if(errorCode == "auth/invalid-credential"){
+                    document.getElementById("inicioMail").classList.add("err");
+                    document.getElementById("inicioPass").classList.add("err");
+                    setErrores([...errores, "Login error"])
+                }
             });
     }
 
     function registroCorreo() {
-    
-        createUserWithEmailAndPassword(auth, emailRegistro.value, passRegistro.value)
+        
+        createUserWithEmailAndPassword(auth, emailRegistro, passRegistro)
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
                 // ...
-                router.push(link);
+                navega('/');
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                
+            
+                if (errorCode == "auth/weak-password") {
+                    document.getElementById("registroPass").classList.add("err");
+                    setErrores([...errores, "Password must have more characters"])
+                }
+                if (errorCode == "auth/invalid-email") {
+                    document.getElementById("registroMail").classList.add("err");
+                    setErrores([...errores, "Invalid email"])
+                }
+                if (errorCode == "auth/email-already-in-use") {
+                    document.getElementById("registroMail").classList.add("err");
+                    setErrores([...errores, "Email in use"])
+                }
             });
     }
     function iniciaSesionGitHub() {
+        setErrores([])
         const provider = new GithubAuthProvider();
         signInWithPopup(auth, provider)
         .then((result) => {
@@ -84,9 +116,7 @@ let navega = useNavigate();
     
             // The signed-in user info.
             const user = result.user;
-            // IdP data available using getAdditionalUserInfo(result)
-            // ...
-            router.push(link);
+            navega('/');
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -96,9 +126,11 @@ let navega = useNavigate();
             // The AuthCredential type that was used.
             const credential = GithubAuthProvider.credentialFromError(error);
             // ...
+            setErrores([...errores, errorMessage])
         });
     }
     function iniciaSesionFacebook() {
+        setErrores([])
         const provider = new FacebookAuthProvider();
         signInWithPopup(auth, provider)
         .then((result) => {
@@ -121,7 +153,7 @@ let navega = useNavigate();
             const email = error.customData.email;
             // The AuthCredential type that was used.
             const credential = FacebookAuthProvider.credentialFromError(error);
-    
+            setErrores([...errores, errorMessage])
             // ...
         });
     }
@@ -160,14 +192,26 @@ let navega = useNavigate();
                     </div>
                     <span>or use an email to register</span>
                     <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" v-model="emailRegistro"/>
-                    <input type="password" placeholder="Password" v-model="passRegistro"/>
-                    <button onClick={registroCorreo()} className="buttons">Sign up</button>
+                    <input id='registroMail' type="email" placeholder="Email" onChange={(e) => {
+                      emailRegistro = e.target.value;
+                      setErrores([])
+                      document.getElementById("registroMail").classList.remove("err")
+                    }}/>
+                    <input id='registroPass' type="password" placeholder="Password" onChange={(e) => {
+                      passRegistro = e.target.value;
+                      setErrores([])
+                      document.getElementById("registroPass").classList.remove("err")
+                    }}/>
+                    <button onClick={registroCorreo} className="buttons">Sign up</button>
                 </div>
             </div>
             <div className="form-container sign-in-container">
                 <div className="form">
                     <h1>Log in</h1>
+                    <div className='alert alert-danger' hidden={!errores.length>0}>
+                        <h2>Error</h2>
+                        {errores}
+                    </div>
                     <div className="social-container">
                         <button onClick={iniciaSesionGoogle} type="button" className="social">
                             <Icon icon="mingcute:google-fill" />
@@ -180,9 +224,17 @@ let navega = useNavigate();
                         </button>
                     </div>
                     <span>or use your account</span>
-                    <input type="email" placeholder="Email" v-model="emailInicio"/>
-                    <input type="password" placeholder="Password" v-model="passInicio"/>
-                    <button onClick={inicioCorreo()} className="buttons">Log in</button>
+                    <input id='inicioMail' type="email" placeholder="Email" onChange={(e) => {
+                        emailInicio = e.target.value;
+                        setErrores([])
+                        document.getElementById("inicioMail").classList.remove("err")
+                    }}/>
+                    <input id='inicioPass' type="password" placeholder="Password" onChange={(e) => {
+                        passInicio = e.target.value;
+                        setErrores([])
+                        document.getElementById("inicioPass").classList.remove("err")
+                    }}/>
+                    <button onClick={inicioCorreo} className="buttons">Log in</button>
                 </div>
             </div>
             <div className="overlay-container">
