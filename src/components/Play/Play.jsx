@@ -146,7 +146,7 @@ export default function Play() {
     }
     return (
         <div id="juego" className='d-flex justify-content-center align-items-center h-100 flex-column'>
-            <h2 className='display-1'>How it's that Pokemon?</h2>
+            <h2 className='display-1'>Who it's that Pokemon?</h2>
             <div className='d-flex align-items-center'>
                 {img}
                 <div className='d-flex flex-column justify-content-evenly h-100'>
